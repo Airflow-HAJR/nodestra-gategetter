@@ -1,9 +1,10 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import { useGateGetter } from '../useGateGetter'
 import { useAuth } from '../../../hooks/useAuth'
 import { useAirportCode } from '../../../hooks/useAirportCode'
 import { supabase } from '../../../lib/supabase'
+
+const SIGNIN_URL = import.meta.env.VITE_SIGNIN_URL ?? ''
 import { NavigationOverlay } from '../../map-builder/ui/NavigationOverlay'
 import { StatusBar } from './StatusBar'
 import { TrackedFlightsBar } from './TrackedFlightsBar'
@@ -17,7 +18,6 @@ export function GateGetterDashboard() {
   const { airportCode, loading: airportLoading } = useAirportCode()
   const { data, error, isLoading, isConnected, pinFlight, unpinFlight, refresh } = useGateGetter(airportCode ?? undefined)
   const { user } = useAuth()
-  const navigate = useNavigate()
   const [navOpen, setNavOpen] = useState(false)
 
   if (isLoading || airportLoading) {
@@ -87,7 +87,7 @@ export function GateGetterDashboard() {
           </span>
           <button
             className="ft-topbar-btn"
-            onClick={async () => { await supabase.auth.signOut(); navigate('/') }}
+            onClick={async () => { await supabase.auth.signOut(); window.location.href = SIGNIN_URL + '/sign-in' }}
           >
             Sign out
           </button>
