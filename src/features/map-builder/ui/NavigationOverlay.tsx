@@ -8,11 +8,14 @@ interface Props {
   onClose: () => void
 }
 
+const MAPBUILDER_URL = import.meta.env.VITE_MAPBUILDER_URL ?? ''
+const SIGNIN_URL = import.meta.env.VITE_SIGNIN_URL ?? ''
+
 const NAV_ITEMS = [
   { label: 'Flight Tracker', path: '/dashboard' },
-  { label: 'Map Builder', path: '/dashboard/map' },
+  { label: 'Map Builder', path: MAPBUILDER_URL ? '__external__mapbuilder' : '' },
   { label: 'Sign Out', path: '__signout__' },
-]
+].filter(item => item.path !== '')
 
 export function NavigationOverlay({ isOpen, onClose }: Props) {
   const navigate = useNavigate()
@@ -48,6 +51,9 @@ export function NavigationOverlay({ isOpen, onClose }: Props) {
     onClose()
     if (path === '__signout__') {
       await supabase.auth.signOut()
+      window.location.href = SIGNIN_URL + '/sign-in'
+    } else if (path === '__external__mapbuilder') {
+      window.location.href = MAPBUILDER_URL
     } else {
       navigate(path)
     }
