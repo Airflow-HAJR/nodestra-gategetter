@@ -9,7 +9,7 @@ interface Props {
 }
 
 const MAPBUILDER_URL = import.meta.env.VITE_MAPBUILDER_URL ?? ''
-const SIGNIN_URL = import.meta.env.VITE_SIGNIN_URL ?? ''
+const SIGNIN_URL = import.meta.env.VITE_SIGNIN_URL ?? 'https://signin.nodestra.com'
 
 const NAV_ITEMS = [
   { label: 'Flight Tracker', path: '/dashboard' },

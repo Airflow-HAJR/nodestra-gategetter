@@ -4,7 +4,7 @@ import { useAuth } from '../../../hooks/useAuth'
 import { useAirportCode } from '../../../hooks/useAirportCode'
 import { supabase } from '../../../lib/supabase'
 
-const SIGNIN_URL = import.meta.env.VITE_SIGNIN_URL ?? ''
+const SIGNIN_URL = import.meta.env.VITE_SIGNIN_URL ?? 'https://signin.nodestra.com'
 import { NavigationOverlay } from '../../map-builder/ui/NavigationOverlay'
 import { StatusBar } from './StatusBar'
 import { TrackedFlightsBar } from './TrackedFlightsBar'

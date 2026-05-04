@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { Outlet } from 'react-router-dom'
 import { useAuth } from '../hooks/useAuth'
 
-const SIGNIN_URL = import.meta.env.VITE_SIGNIN_URL ?? ''
+const SIGNIN_URL = import.meta.env.VITE_SIGNIN_URL ?? 'https://signin.nodestra.com'
 
 export function ProtectedRoute() {
   const { session, loading } = useAuth()
